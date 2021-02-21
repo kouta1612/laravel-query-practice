@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Repository\UserInterface;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(UserInterface $UserRepository)
     {
-        return view('home');
+        $users = $UserRepository->fetchUser();
+        return view('home', ['users' => $users]);
+        return response()->json($users);
     }
 }
