@@ -7,9 +7,11 @@
 </head>
 
 <body>
-    @foreach ($users as $user)
-        <p>{{ $user->name }}</p>
+    @foreach ($users->unique('name') as $user)
+        <p>ユーザ名：{{ $user->name }}</p>
+        <p>役割：{{ $users->where('name', $user->name)->pluck('role_name')->join(', ') }}</p>
     @endforeach
+    <p>{{ $users }}</p>
 </body>
 
 </html>

@@ -11,6 +11,5 @@ class HomeController extends Controller
     {
         $users = $UserRepository->fetchUser();
         return view('home', ['users' => $users]);
-        return response()->json($users);
     }
 }
